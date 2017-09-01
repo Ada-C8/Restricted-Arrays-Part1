@@ -52,34 +52,60 @@ def find_largest(array, length)
   max = array[0]
   until i == length
     if max < array[i]
-      array[i] = max
-    end
-    return max
-  end
+      max = array[i]
+    end #if loop
+    i += 1
+  end #until loop
+  return max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  i =1
+  i = 1
   min = array[0]
   until i == length
     if min > array[i]
-      array[i] = min
-    end
-    return min
-  end
+      min = array[i]
+    end #if
+    i += 1
+  end #until
+  return min
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  min = 0
+  max = length - 1
+
+  until min >= max
+    temp = array[min]
+    array[min] = array[max]
+    array[max] = temp
+    min += 1
+    max -= 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  min = 0
+  max = length
+
+  while min < (max  - 1)
+    mid = (min + max) / 2
+    if value_to_find == array[mid]
+      return true
+    elsif
+      value_to_find < array[mid]
+      max = mid
+    elsif
+      value_to_find > array[mid]
+      min = mid
+    end # if
+  end # while
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
