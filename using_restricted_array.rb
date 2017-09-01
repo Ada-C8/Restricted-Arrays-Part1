@@ -6,42 +6,101 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
+
 def length(array)
-  puts "NOT IMPLEMENTED"
+  length = 0
+  i = 0
+  until array[i] == nil
+    length += 1
+    i += 1
+  end
+  length
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    print "#{array[i]}"
+    if array[i+1] == nil
+      print "\n"
+    else
+      print ', '
+    end
+    i += 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until i == length
+    if array[i] == value_to_find
+      return true
+    end
+    i += 1
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  max = array[0]
+  until i == length
+    if array[i] > max
+      max = array[i]
+    end
+    i += 1
+  end
+  max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  min = array[0]
+  until i == length
+    if array[i] < min
+      min = array[i]
+    end
+    i += 1
+  end
+  min
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  a = 0
+  b = length - 1
+  until a >= b
+    array[a] = array[a] + array[b]
+    array[b] = array[a] - array[b]
+    array[a] = array[a] - array[b]
+    a += 1
+    b -= 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  min = 0
+  max = length
+  while min < max
+    mid = (min + max) / 2
+    if array[mid] > value_to_find
+      max = mid
+    elsif array[mid] < value_to_find
+      min = mid
+    elsif array[mid] == value_to_find
+      return true
+    end
+  end
+  false
 end
 
 # Helper method provided to sort the array in ascending order
@@ -127,6 +186,9 @@ puts "The smallest value in the array is #{smallest}"
 puts
 
 puts "---Test 6: Reverse array --"
+print "Starting array: "
+print_array(another_array)
+puts
 # reverse the values in the current array
 reverse(another_array, another_array_length)
 # prints the reversed array
