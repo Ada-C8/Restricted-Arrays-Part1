@@ -7,41 +7,128 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+  idx = 0
+
+  while array[idx] != nil
+    idx += 1
+  end
+
+  return idx
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+
+  len = length(array)
+  str_arr = ""  # string rep of the array
+
+  # iterate through array and print out each val
+  (0...len).each do |idx|
+    str_arr += array[idx].to_s + " "
+  end
+
+  # don't print trailing whitespace
+  print str_arr[0...-1]
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+  # implement linear search
+  length.times do |idx|
+    if value_to_find == array[idx]
+      return true
+    end
+  end
+
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+  # find max using linear search
+
+  # initialize max to first element in array
+  max = array[0]
+
+  # iterate through array, compare each val to max
+  (1...length).each do |idx|
+    if array[idx] > max
+      max = array[idx]
+    end
+  end
+
+  return max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+  # finds min using linear search
+
+  # init min to first element in array
+  min = array[0]
+
+  # iterate and compare each val to min
+  (1...length).each do |idx|
+    if array[idx] < min
+      min = array[idx]
+    end
+  end
+
+  return min
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+
+  # indexes of vals being swapped
+  idx1 = 0
+  idx2 = length - 1
+
+  while idx1 < idx2 do
+    # set temp_var, then swap vals
+    temp_var = array[idx1]
+    array[idx1] = array[idx2]
+    array[idx2] = temp_var
+
+    idx1 += 1
+    idx2 -= 1
+  end
+
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  #puts "NOT IMPLEMENTED"
+  low = 0
+  high = length
+
+  while low <= high
+    mid = (low + high) / 2
+
+    # if found
+    if value_to_find == array[mid]
+      return true
+    # search left half
+    elsif value_to_find < array[mid]
+      high = mid - 1
+      # search right ahlf
+    else
+      low = mid + 1
+    end
+  end
+
+  return false
+
 end
 
 # Helper method provided to sort the array in ascending order
