@@ -1,47 +1,93 @@
 require_relative 'restricted_array.rb'
-# RestrictedArray can be created using a specified size, or a random size in
-# the range of 1-20 will be chosen for you.
+# RestrictedArray can be created using a specified size, or a random size in the range of 1-20 will be chosen for you.
 # All values are integers in the range of 1-221.
 # RestrictedArray cannot be resized.
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array == nil
+    i += 1
+  end
+
+  return i
 end
+
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    print "#{array[i]} "
+    i += 1
+  end
+  puts
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until i == length
+    return true if array[i] == value_to_find
+    i += 1
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  max = array[0]
+  length(array).times do |i|
+    if array[i] > max
+      max = array[i]
+    end
+  end
+  return max
 end
+
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  min = array[0]
+  length(array).times do |i|
+    if array[i] < min
+      min = array[i]
+    end
+  end
+  return min
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  x = length - 1
+  while i < x
+    temp = array[i]
+    array[i] = array[x]
+    array[x] = temp
+    i += 1
+    x -= 1
+  end
 end
-
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+ i = 0
+ x = length - 1
+ while i <= x
+   mid = (i + x)/2
+   if array[mid] > value_to_find
+     x = mid - 1
+   elsif array[mid] < value_to_find
+     i = mid + 1
+   else return true
+   end
+ end
+ return false
 end
 
 # Helper method provided to sort the array in ascending order
