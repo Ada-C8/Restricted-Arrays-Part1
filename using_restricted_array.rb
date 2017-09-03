@@ -8,7 +8,7 @@ require_relative 'restricted_array.rb'
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
   counter = 0
-  
+
   while array[counter] != nil
     counter += 1
   end
@@ -30,9 +30,14 @@ end
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
+
+  if length == 1 && value_to_find == array[0]
+    return true
+  else
   length.times do |i|
     return true if array[i] == value_to_find
   end
+end
 
   return false
 end
@@ -82,14 +87,18 @@ def binary_search(array, length, value_to_find)
   low = 0
   high = length
 
-  while low < high
-    mid = (low + high) / 2
-    if value_to_find == array[mid]
-      return true
-    elsif value_to_find < array[mid]
-      high = mid
-    else
-      low = mid
+  if length == 1 && value_to_find == array[0]
+    return true
+  else
+    while low < high
+      mid = (low + high) / 2
+      if value_to_find == array[mid]
+        return true
+      elsif value_to_find < array[mid]
+        high = mid
+      else
+        low = mid
+      end
     end
   end
 
