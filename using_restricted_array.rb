@@ -7,41 +7,105 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while array[counter] != nil
+    counter += 1
+  end
+  return counter
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  counter = 0
+  while array[counter] != nil
+    puts array[counter]
+    counter += 1
+  end
+
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  while index < length
+    if array[index] != value_to_find
+      index += 1
+    else
+      return true
+    end
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  max = array[0]
+  index = 0
+  while index < length
+    if array[index] > max
+      max = array[index]
+      index += 1
+    else
+      index += 1
+    end
+  end
+  return max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+
+  smallest = array[0]
+  index = 0
+  while index < length
+    if array[index] < smallest
+      smallest = array[index]
+      index += 1
+    else
+      index += 1
+    end
+  end
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  mid = length / 2
+  temp = 0
+
+  while i < mid
+    temp = array[i];
+    array[i] = array[length - 1 - i];
+    array[length - 1 - i] = temp;
+    i += 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  low = 0
+  high = length - 1
+  mid = (low + high)/ 2
+
+
+
+  while low <= high
+    if array[mid] == value_to_find
+      return true
+    elsif array[mid] > value_to_find
+      high = mid
+      mid = (low + high)/ 2
+    else
+      low = mid + 1
+      mid = (low + high)/ 2
+    end
+  end
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
