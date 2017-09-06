@@ -8,11 +8,9 @@ require_relative 'restricted_array.rb'
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
   length = 0
-  idx = 0
 
-  until !(array[idx])
+  until !(array[length])
     length += 1
-    idx += 1
   end
 
   return length
@@ -20,11 +18,8 @@ end
 
 # Prints each integer values in the array
 def print_array(array)
-  idx = 0
-
-  until !(array[idx])
+  length(array).times do |idx|
     puts array[idx]
-    idx += 1
   end
 
 end
