@@ -7,30 +7,62 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+    while array[i] != nil
+      print "#{i} "
+      i += 1
+    end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while i < length
+    if array[i] == value_to_find
+      return true
+    else
+      i += 1
+    end
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  max = array[0]
+  while i < length
+    if array[i] > max
+      max = array[i]
+    end
+    i += 1
+  end
+  return max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  min = array[0]
+  while i < length
+    if array[i] < min
+      min = array[0]
+    end
+    i += 1
+  end
+  return min
 end
 
 # Reverses the values in the integer array in place
@@ -41,7 +73,21 @@ end
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  asc_array = sort(array, length)
+  low = asc_array[0]
+  high = asc_array[1]
+
+  while low < high
+  mid = (low + high) / 2
+    if mid == value_to_find
+      return true
+    elsif mid > value_to_find
+      high = mid
+    else
+      low = mid
+    end
+    return false
+  end
 end
 
 # Helper method provided to sort the array in ascending order
@@ -94,7 +140,7 @@ puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
 value_to_find = 120
 middle_index = another_array_length/2
-array[middle_index] = value_to_find
+another_array[middle_index] = value_to_find
 print "Printing values in the array after inserting #{value_to_find} at #{middle_index}: "
 print_array(another_array)
 if search(another_array, another_array_length, value_to_find)
@@ -123,7 +169,7 @@ puts
 puts "---Test 5: Find smallest --"
 # print the smallest value in the array
 smallest = find_smallest(another_array, another_array_length)
-puts "The smallest value in the array is #{largest}"
+puts "The smallest value in the array is #{smallest}"
 puts
 
 puts "---Test 6: Reverse array --"
