@@ -7,41 +7,236 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  # if array is empty done
+  # set i to 0
+  # while i is less than array length
+  # - increment i by 1
+  # outside loop, return i
+  i = 0
+  while array[i] != nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  # we know the length of the array
+  # it contains integers
+  # want: print each integer value in array
+
+  # set variable to array's length
+  # loop array by array's length times
+  # - print value at each index
+
+
+
+  length(array).times do |value|
+    print "#{array[value]}, "
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+=begin
+1. We know length of array
+2. it contains integets
+3. it is unsorted
+
+Want: find a known value in array
+once found return true
+return false if not found.
+
+Algorithm
+1. set i to 0
+2. while i < length
+  - check value at i
+  - if a match return true
+  - increment i by 1
+3. outside loop return false
+=end
+
+  i = 0
+
+  while i < length
+    if array[i] == value_to_find
+
+      return true
+    end
+    i += 1
+    return false
+  end
+
+
+  # Another Algorithm
+  # 1. interat over the array length times
+  # 2. if value_to_find matchs value at index, return true.
+  # 3. otherwise return false, outside loop
+  #
+  # length.times do |value|
+  #   if value == value_to_find
+  #     return true
+  #   end
+  # end
+  # return false
 end
+
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+=begin
+  1. We know length of array
+  2. it contains integets
+  3. it is unsorted
+
+  Want:
+  1. find max value in array
+  2. once found return max
+
+
+  Algorithm
+  1. set i to 0
+  2. set max to value at i
+  3. while i < length
+    - if value at i > max
+      -  replace max with value at i
+    - increment i by 1
+  4.  return max
+=end
+
+  i = 0
+  max = array[0]
+
+  #
+  # while i < length(array)
+  #   if array[i] > max
+  #     max = array[i]
+  #   end
+  #   i += 1
+  # end
+  # return max
+
+  # Another way
+  # (1..length).times do |value|
+  #   if value > max
+  #     max = array[value]
+  #   end
+  #   # i += 1
+  # end
+  # return max
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+=begin
+    1. We know length of array
+    2. it contains integets
+    3. it is unsorted
+
+    Want:
+    1. find min value in array
+    2. once found return min
+
+
+    Algorithm
+    1. set i to 0
+    2. set min to value at i
+    3. while i < length
+      - if value at i < min
+        -  replace min with value at i
+        - increment i by 1
+    4.  return min
+=end
+
+  i = 0
+  min = array[0]
+
+  while i < length
+    if array[i] < min
+      min = array[i]
+    end
+    i += 1
+  end
+  return min
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+=begin
+      1. We know length of array
+      2. it contains integets
+      3. it is unsorted
+
+      Want:
+      1. reverse array in place
+
+      Algorithm
+      1. check contents, none then done (this step is for me to remember in future.)
+      2. set i to 0
+      3. set j to lemgth - 1
+      3. while i < j
+        - swap values at i and j
+        - increment i by 1
+        - decrement j by 1
+=end
+  i = 0
+  j = length-1
+
+  while i < j
+    array[i] = array[i] + array[j]
+    array[j] = array[i] - array[j]
+    array[i] = array[i] - array[j]
+
+    i += 1
+    j -= 1
+
+  end
+
+
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+=begin
+        1. We know length of array
+        2. it contains integets
+        3. it is unsorted
+
+        Want:
+        1. find value with binary search
+        2. Returns true if found
+        3. false otherwise
+
+        Algorithm
+        1. check contents, none then done (this step is for me to remember in future.)
+        2. set low to first index
+        3. set high to last index
+        3. while low < high
+          - index to mid
+          - if match, return true
+          - if value at index mid is higher, eliminate half and set high to mid
+          - if value at index mid is lower, eliminate half and set low to mid.
+
+=end
+
+  low = 0
+  high = length-1
+
+  while low < high
+    mid = (low + high) / 2
+    if array[mid] == value_to_find
+      return true
+    elsif array[mid] < value_to_find
+      high = mid
+    else array[mid] > value_to_find
+      low = mid
+    end
+  end
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
@@ -89,7 +284,8 @@ puts "---Test 2: Print values --"
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
-
+puts
+puts
 puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
 value_to_find = 120
