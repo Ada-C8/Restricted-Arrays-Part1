@@ -7,41 +7,104 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  value = array[0]
+  until value == nil
+    value = array[i]
+    i += 1
+  end
+  return (i - 1)
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  value = array[0]
+  until value == nil
+    value = array[i]
+    puts value
+    i += 1
+  end
+  return value
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  value = array[0]
+  until value == nil
+    value = array[i]
+    if value == value_to_find
+      return true
+    end
+    i += 1
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  max_value = array[0]
+  until array[i] == nil
+    if max_value < array[i]
+      max_value = array[i]
+    end
+    i += 1
+  end
+  return max_value
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  min_value = array[0]
+  until array[i] == nil
+    if min_value > array[i]
+      min_value = array[i]
+    end
+    i += 1
+  end
+  return min_value
 end
 
 # Reverses the values in the integer array in place
+
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+
+  while i < length/2
+    a = array[i]
+    b = array[length - 1 - i]
+    array[i] = b
+    array[length - 1 - i] = a
+    i += 1
+  end
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  low = 0
+  high = length - 1
+
+
+  while low <= high
+    mid = (low + high)/2
+    if array[mid] > value_to_find
+      high = mid - 1
+    elsif array[mid] < value_to_find
+      low = mid + 1
+    else
+      return true
+    end
+
+  end
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
@@ -67,6 +130,7 @@ def sort(array, length)
       array[index] = temp
     end
   end
+  return array
 end
 ## --- END OF METHODS ---
 
