@@ -7,41 +7,117 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  element = 0
+  while element.class == Integer
+    element = array[index]
+    index += 1
+  end
+  index - 1
 end
+
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  element = 0
+  while element.class == Integer
+    element = array[index]
+    index += 1
+    print "#{element} "
+  end
+  puts
+  index - 1
 end
+
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  element = nil
+  index = 0
+  while element != value_to_find
+    element = array[index]
+    index += 1
+    return false if index > length
+  end
+  return index - 1
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
+
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  largest = array[index]
+  while index < length
+    if array[index] > largest
+      largest = array[index]
+    end
+    index += 1
+  end
+  largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  largest = array[index]
+  while index > length
+    if array[index] > largest
+      largest = array[index]
+    end
+    index += 1
+  end
+  largest
 end
+
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  index_front = 0
+  index_back = length -1
+  while index_front <= index_back
+    temp = array[index_front]
+    array[index_front] = array[index_back]
+    array[index_back] = temp
+    index_back -= 1
+    index_front += 1
+  end
+  array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  index = length/2
+  range = length/2
+  while index >= 0 && index <= length-1
+    range = range/2
+    if array[index] == value_to_find
+      return index
+
+    elsif value_to_find < array[index]
+
+      if range > 1
+        index = index - (range)
+      else
+        index -= 1
+      end
+
+    else
+
+      if range > 1
+        index = index + (range)
+      else
+        index += 1
+      end
+
+    end
+    puts index
+  end
+  false
 end
 
 # Helper method provided to sort the array in ascending order
