@@ -65,12 +65,8 @@ def reverse(array, length)
   last_i = length - 1
   (length/2).times do
     a = array[i]
-    b = array[last_i]
-    temp = a
-    a = b
-    b = temp
-    array[i] = a
-    array[last_i] = b
+    array[i] = array[last_i]
+    array[last_i] = a
     i += 1
     last_i -= 1
   end
