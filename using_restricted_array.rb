@@ -6,42 +6,93 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
+
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == "nil"
+    i += 1
+  end
+  return i
 end
 
-# Prints each integer values in the array
+#Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == "nil"
+    i += 1
+    print array[i]
+  end
+  return i
+
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  found = false
+  until array[i] == value_to_find
+    i += 1
+    if array[i] == value_to_find
+      found = true
+    end
+  end
+  return found
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  largest = 0
+  while i < length
+    if array[i] > largest
+      largest = array[i]
+    end
+    i += 1
+  end
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  smallest = 0
+  while i < length
+    if array[i] < largest
+      smallest = array[i]
+    end
+    i += 1
+  end
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  left = 0
+  right = length - 1
+  dummy = 0
+  while left < length/2
+    dummy = array[left]
+    array[left] = array[right]
+    array[right] = dummy
+    left += 1
+    right -= 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  #running into issue of splitting array and it changing array sizes from odd/even, which changes if you need to check out the middle number
+#   i = 0
+#   found = false
+#   array_section = length
+#   if array_section%2 == 0
+#     while i < (array_section/2)
+#       if value_to_find > array[array_section/2]
+# end
+#
+
 end
 
 # Helper method provided to sort the array in ascending order
@@ -71,13 +122,13 @@ end
 ## --- END OF METHODS ---
 
 # A restricted array could be constructed of a given size like so
-puts "---Test 1: Check length --"
-size = 5
-my_integer_array = RestrictedArray.new(size)
-my_integer_array_length = length(my_integer_array)
-puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
-puts "BUG!" if my_integer_array_length != size
-puts
+# puts "---Test 1: Check length --"
+# size = 5
+# my_integer_array = RestrictedArray.new(size)
+# my_integer_array_length = length(my_integer_array)
+# puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
+# puts "BUG!" if my_integer_array_length != size
+# puts
 
 # A restricted array could be constructed of a random size (1 to 20) like so
 another_array = RestrictedArray.new()
