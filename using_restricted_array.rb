@@ -22,15 +22,12 @@ def print_array(array)
   #puts "NOT IMPLEMENTED"
 
   len = length(array)
-  str_arr = ""  # string rep of the array
 
   # iterate through array and print out each val
   (0...len).each do |idx|
-    str_arr += array[idx].to_s + " "
+    print "#{array[idx]} "
   end
 
-  # don't print trailing whitespace
-  print str_arr[0...-1]
 end
 
 # For an unsorted array, searches for 'value_to_find'.
