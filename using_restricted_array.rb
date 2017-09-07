@@ -7,43 +7,89 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    i += 1
+  end
+  return i
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    print "#{array[i]} "
+    i += 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  length(array).times do |i|
+    if array[i] == value_to_find
+      return true
+    end
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  largest = array[0]
+  length(array).times do |i|
+    if array[i] > largest
+      largest = array[i]
+    end
+  end
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  smallest = array[0]
+  length(array).times do |i|
+    if array[i] < smallest
+      smallest = array[i]
+    end
+  end
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  length = length(array)
+  i = 0
+  last_i = length - 1
+  (length/2).times do
+    a = array[i]
+    array[i] = array[last_i]
+    array[last_i] = a
+    i += 1
+    last_i -= 1
+  end
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  low = 0
+  high = length(array) - 1
+  until low > high
+    mid = (high + low) / 2
+    if value_to_find == array[mid]
+      return true
+    elsif value_to_find < array[mid]
+      high = mid - 1
+    elsif value_to_find > array[mid]
+      low = mid + 1
+    end
+  end
+  return false
 end
-
 # Helper method provided to sort the array in ascending order
 # Implements selection sort
 # Time complexity = O(n^2) since to find the correct value to be in a given location,
@@ -89,6 +135,7 @@ puts "---Test 2: Print values --"
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
+puts
 
 puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
@@ -139,6 +186,7 @@ puts "Sorting array"
 sort(another_array, another_array_length)
 print "Array sorted in ascending order: "
 print_array(another_array)
+puts
 puts
 
 puts "---Test 7: Find largest in sorted array--"
