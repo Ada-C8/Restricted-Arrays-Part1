@@ -22,7 +22,7 @@ def print_array(array)
     printed_array << array[i]
     i += 1
   end
-  print printed_array
+  print printed_array # if I add a return here, it does not print the array. Why?
 end
 
 # For an unsorted array, searches for 'value_to_find'.
@@ -31,18 +31,24 @@ def search(array, length, value_to_find)
   length.times do |i|
     while array[i] != value_to_find
       i += 1
-    end
-    if array[i] == value_to_find
-      return i
+      if array[i] == value_to_find
+        # puts i
+        return true
+      end
     end
   end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  if length <= 0
+  if length == 0
     return nil
+  end
+
+  if length == 1
+    return array[0]
   end
 
   i = 0
@@ -56,6 +62,8 @@ def find_largest(array, length)
   end
   return largest_value
 
+# I wanted to include some of the code I originally tried to create without using the ppt
+# slides. Is this something that would have been ok to use or is the above code a better option?
   # max = 0
   # length.times do |i|
   #   if array[i] >= max
