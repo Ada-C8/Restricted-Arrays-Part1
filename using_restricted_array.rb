@@ -96,11 +96,12 @@ def binary_search(array, length, value_to_find)
     if value_to_find == array[mid]
       return true
     elsif value_to_find > array[mid]
-      i = mid
+      i = mid + 1
     else #value_to_find < array[mid]
-      j = mid
+      j = mid - 1
     end
   end
+  return false 
 end
 
 # Helper method provided to sort the array in ascending order
