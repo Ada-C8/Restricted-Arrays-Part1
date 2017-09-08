@@ -20,3 +20,19 @@ Implement the methods in using_restricted_array.rb. Methods to implement are:
              Note: Assume that the array is sorted in ascending order.
 - *find_largest* - Finds and returns the largest value element in the integer array.
 - *find_smallest* - Finds and returns the smallest value element in the integer array.
+
+Shruti Van Wicklen [9:26 PM]
+Thank you @kimberleyzell for helping fix two bug in today's homework!
+If you've already forked and cloned, please update the following in using_restricted_array.rb
+puts "---Test 3: Linear Search --"
+# search for value_to_find in the array
+value_to_find = 120
+middle_index = another_array_length/2
+*another_array[middle_index] = value_to_find*
+
+
+puts "---Test 5: Find smallest --"
+# print the smallest value in the array
+smallest = find_smallest(another_array, another_array_length)
+*puts "The smallest value in the array is #{smallest}"*
+puts

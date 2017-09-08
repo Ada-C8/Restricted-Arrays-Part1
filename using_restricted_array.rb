@@ -6,19 +6,58 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
+
+=begin
+4. search - which looks for a given integer value in the array. Returns true if found, false otherwise. Note: do not assume that the array is sorted.
+
+5. binary_search - which looks for a given integer value in the array. Returns true if found, false otherwise. Note: Assume that the array is sorted in ascending order.
+
+6. find_largest - Finds and returns the largest value element in the integer array.
+
+7. find_smallest - Finds and returns the smallest value element in the integer array.
+=end
+
 def length(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+
+  while true
+    if array[index] != nil
+      index += 1
+    else
+      return index
+    end
+  end
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  array_printed_string = ""
+
+  while true
+    if array[index] != nil
+      array_printed_string = array_printed_string.concat(array[index].to_s + " ")
+      index += 1
+    else
+      puts array_printed_string
+      break
+    end
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  final_index = length - 1
+
+  (0..final_index).each do |index|
+    if array[index] == value_to_find
+      return true
+    end
+  end
+
+  #must check entire array before returning false so wait for loop to end
+  return false
 end
 
 # Finds and returns the largest integer value the array
@@ -35,7 +74,22 @@ end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  if length == 1 #if you have an array of one element, you can't reverse it
+    return array
+  end
+
+  index = 0
+  final_index = length - 1
+  while index < final_index
+    temp_value = array[index] #step1 swap index 0 value in temp_value
+    array[index] = array[final_index]
+    array[final_index] = temp_value
+
+    index += 1
+    final_index -= 1
+  end
+
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
@@ -128,6 +182,7 @@ puts
 
 puts "---Test 6: Reverse array --"
 # reverse the values in the current array
+print_array(another_array)
 reverse(another_array, another_array_length)
 # prints the reversed array
 print "Reversed array: "
