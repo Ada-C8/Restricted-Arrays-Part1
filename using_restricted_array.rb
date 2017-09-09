@@ -121,7 +121,7 @@ def binary_search(array, length, value_to_find)
     while low < high
       mid = (high + low) / 2
       # TODO: doesn't work with == (enters infinite loop)
-      if array[mid] = value_to_find
+      if array[mid] == value_to_find
         return true
       elsif array[mid] > value_to_find
         high = mid - 1
