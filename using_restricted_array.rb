@@ -7,41 +7,96 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  length = 0
+  until array[length] == nil
+    length += 1
+  end
+  return length
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  print "["
+  until array[index] == nil
+    print "#{array[index]} "
+    index += 1
+  end
+  puts "]"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until i >= length
+    if array[i] == value_to_find
+      return true
+    end
+    i += 1
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  largest = 0
+  until i >= length
+    if array[i] > largest
+      largest = array[i]
+    end
+    i += 1
+  end
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  smallest = array[0]
+  until i >= length
+    if array[i] < smallest
+      smallest = array[i]
+    end
+    i += 1
+  end
+  return smallest
+
 end
 
 # Reverses the values in the integer array in place
+
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until i >= length/2
+    last = length - 1 -i
+    #puts "Swapping #{i} with #{last} (values #{array[i]} -> #{array[last  ]})"
+    holder = array[i]
+    array[i] = array[last]
+    array[last] = holder
+    i += 1
+  end
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  start = 0
+  last = length-1
+  while start <= last
+    middle = (last + start) / 2
+    if value_to_find == array[middle]
+      return true
+    elsif value_to_find > array[middle]
+        start = middle + 1
+    else
+        last = middle - 1
+    end
+  end
 end
 
 # Helper method provided to sort the array in ascending order
@@ -95,7 +150,7 @@ puts "---Test 3: Linear Search --"
 value_to_find = 120
 middle_index = another_array_length/2
 another_array[middle_index] = value_to_find
-print "Printing values in the array after inserting #{value_to_find} at #{middle_index}: "
+puts "Printing values in the array after inserting #{value_to_find} at #{middle_index}: "
 print_array(another_array)
 if search(another_array, another_array_length, value_to_find)
   puts "#{value_to_find} found in the array!"
@@ -128,7 +183,11 @@ puts
 
 puts "---Test 6: Reverse array --"
 # reverse the values in the current array
+print "Original array: "
+print_array(another_array)
+
 reverse(another_array, another_array_length)
+
 # prints the reversed array
 print "Reversed array: "
 print_array(another_array)
