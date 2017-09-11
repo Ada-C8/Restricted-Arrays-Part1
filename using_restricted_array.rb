@@ -7,41 +7,95 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  indexes = 0
+  until array[indexes] == nil
+    indexes += 1
+  end
+  indexes
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  new_array = []
+  length = length(array)
+  index = 0
+  until index = length - 1
+    new_array << array[index]
+    puts array[index]
+    index += 1
+
+  end
+
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  (0 .. (length - 1)).each do |index|
+    if array[length] == value_to_find
+      return true
+      exit
+    end
+  end
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  largest = 0
+  (0 .. (length - 1)).each do |index|
+    if array[index] > largest
+      largest = array[index]
+    end
+  end
+  largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  smallest = 10000
+  (0 .. (length - 1)).each do |index|
+    if array[index] < smallest
+      smallest = array[index]
+    end
+  end
+  smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  index = length - 1
+  new_array = []
+  until index < 0
+    new_array << array[index]
+    index -= 1
+  end
+  new_array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  first = 0
+  last = length - 1
+
+  while first <= last
+    mid = (first + last)/2
+    if array[mid] == value_to_find
+      true
+      exit
+    elsif array[mid] > value_to_find
+      last = mid - 1
+    elsif array[mid] < value_to_find
+      first = mid + 1
+    else
+      false
+    end
+  end
+
+
+
 end
 
 # Helper method provided to sort the array in ascending order
