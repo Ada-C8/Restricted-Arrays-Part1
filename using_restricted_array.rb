@@ -7,41 +7,97 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  until array[index] == nil
+    index += 1
+  end
+  return index
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  until array[index] == nil
+    puts array[index]
+    index += 1
+  end
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while i < length
+    if array[i] == value_to_find
+      return true
+    else
+      i += 1
+      if i == length
+        return false
+      end
+    end
+  end
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  largest_value = array[i]
+  while i < length
+    if array[i] > largest_value
+      largest_value = array[i]
+    end
+    i += 1
+  end
+  return largest_value
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  min_value = array[i]
+  while i < length
+    if array[i] < min_value
+      min_value = array[i]
+    end
+    i += 1
+  end
+  return min_value
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  j = (length - 1)
+  temp = 0
+  while i < j
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+    i += 1
+    j -= 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  low = 0
+  high = (length - 1)
+  mid = (low + high) / 2
+  while low <= high
+    mid = (low + high) / 2
+    if value_to_find == array[mid]
+      return true
+    elsif array[mid] > value_to_find
+      high = (mid - 1)
+    elsif array[mid] < value_to_find
+      low = (mid + 1)
+    end
+  end
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
@@ -170,7 +226,6 @@ else
   puts "#{value_to_find} not found in the sorted array with linear search!"
   puts "BUG! #{value_to_find} should be at index #{another_array_length-1}"
 end
-puts
 # binary search for value_to_find in the array - find the last value
 value_to_find = another_array[another_array_length-1]
 if binary_search(another_array, another_array_length, value_to_find)
