@@ -7,41 +7,93 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    i += 1
+  end
+  return i
+  # puts "NOT IMPLEMENTED"
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  while array[i] != nil
+    print "#{array[i]}"
+    i += 1
+  end
+  # puts "NOT IMPLEMENTED"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  length.times do |i|
+    if array[i] == value_to_find
+      return true
+    end
+  end
+  return false
+  # puts "NOT IMPLEMENTED"
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  largest = array[0]
+  length.times do |i|
+    if array[i] > largest
+      largest = array[i]
+    end
+  end
+  return largest
+  # puts "NOT IMPLEMENTED"
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  smallest = 222
+  length.times do |i|
+    if array[i] < smallest
+      smallest = array[i]
+    end
+  end
+  return smallest
+  # puts "NOT IMPLEMENTED"
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  start = 0
+  until start >= length / 2
+    last = length - 1 - start
+    temp = array[start]
+    array[start] = array[last]
+    array[last] = temp
+    start += 1
+  end
+  return array
+  # puts "NOT IMPLEMENTED"
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  start = 0
+  last = length(array) - 1
+  until start > last
+    middle = (start + last) / 2
+    if value_to_find == array[middle]
+      return true
+    elsif value_to_find < array[middle]
+      last = middle - 1
+    elsif value_to_find > array[middle]
+      start = middle + 1
+    end
+  end
+  return false
+  # puts "NOT IMPLEMENTED"
 end
 
 # Helper method provided to sort the array in ascending order
