@@ -101,10 +101,7 @@ def binary_search(array, length, value_to_find)
     elsif value_to_find < array[middle]
       last = middle - 1
     end
-
   end
-
-  # return true
 end
 # Helper method provided to sort the array in ascending order
 # Implements selection sort
