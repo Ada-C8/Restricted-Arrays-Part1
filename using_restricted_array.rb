@@ -6,42 +6,104 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
+
 def length(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    i += 1
+  end
+  return i
 end
 
-# Prints each integer values in the array
+#Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  print "["
+  until array[i] == nil
+    if i != 0
+      print ","
+    end
+    print array[i]
+    i += 1
+  end
+  print "]"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  found = false
+  until array[i] == value_to_find
+    i += 1
+    if array[i] == value_to_find
+      found = true
+    end
+  end
+  return found
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  largest = 0
+  until array[i] == nil
+    if array[i] > largest
+      largest = array[i]
+    end
+    i += 1
+  end
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  smallest = array[i]
+  until array[i] == nil
+    if array[i] < smallest
+      smallest = array[i]
+    end
+    i += 1
+  end
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  left = 0
+  right = length - 1
+  holder = 0
+  while left < length/2
+    holder = array[left]
+    array[left] = array[right]
+    array[right] = holder
+    left += 1
+    right -= 1
+  end
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+
+  return false if length == 0
+  low = 0
+  high = length-1
+  length.times do
+    mid = (high+low)/2
+      if array[mid] == value_to_find || array[low] == value_to_find || array[high] == value_to_find
+        return true
+      elsif array[mid] > value_to_find
+        high = mid-1
+      elsif array[mid] < value_to_find
+        low = mid+1
+      end
+  end
+
 end
 
 # Helper method provided to sort the array in ascending order
@@ -70,7 +132,7 @@ def sort(array, length)
 end
 ## --- END OF METHODS ---
 
-# A restricted array could be constructed of a given size like so
+#A restricted array could be constructed of a given size like so
 puts "---Test 1: Check length --"
 size = 5
 my_integer_array = RestrictedArray.new(size)
@@ -90,6 +152,7 @@ puts "---Test 2: Print values --"
 print "Printing values in the array: "
 print_array(another_array)
 
+puts
 puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
 value_to_find = 120
