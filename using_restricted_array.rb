@@ -7,43 +7,102 @@ require_relative 'restricted_array.rb'
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
 def length(array)
-  puts "NOT IMPLEMENTED"
+  length = 0
+  i = 0
+  until array[i] == nil
+    length += 1
+    i += 1
+  end
+  return length
 end
 
 # Prints each integer values in the array
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  print "["
+  until array[i] == nil
+    if array[i + 1] == nil
+      print "#{array[i]}"
+    else
+      print "#{array[i]}, "
+    end
+    i += 1
+  end
+  puts "]"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  until array[i] == nil
+    if array[i] == value_to_find
+      return true
+    end
+    i += 1
+  end
+  return false
 end
 
 # Finds and returns the largest integer value the array
 # Assumes that the array is not sorted.
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  largest = array[0]
+  until array[i] == nil
+    if array[i] > largest
+      largest = array[i]
+    end
+    i += 1
+  end
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  i = 0
+  smallest = array[0]
+  until array[i] == nil
+    if array[i] < smallest
+      smallest = array[i]
+    end
+    i += 1
+  end
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  first = 0
+  last = length-1
+  until first >= last
+    temp = array[first]
+    array[first] = array[last]
+    array[last] = temp
+    first += 1
+    last -= 1
+  end
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
-end
+  first = 0
+  last = length - 1
 
+  while first <= last
+    middle = (first + last) / 2
+    if array[middle] == value_to_find
+      return true
+
+    elsif value_to_find > array[middle]
+      first = middle + 1
+    elsif value_to_find < array[middle]
+      last = middle - 1
+    end
+  end
+end
 # Helper method provided to sort the array in ascending order
 # Implements selection sort
 # Time complexity = O(n^2) since to find the correct value to be in a given location,
