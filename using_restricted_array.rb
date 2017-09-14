@@ -9,7 +9,7 @@ require_relative 'restricted_array.rb'
 
 def length(array)
   i = 0
-  until array[i] == "nil"
+  until array[i] == nil
     i += 1
   end
   return i
@@ -18,12 +18,15 @@ end
 #Prints each integer values in the array
 def print_array(array)
   i = 0
-  until array[i] == "nil"
-    i += 1
+  print "["
+  until array[i] == nil
+    if i != 0
+      print ","
+    end
     print array[i]
+    i += 1
   end
-  return i
-
+  print "]"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
@@ -45,53 +48,61 @@ end
 def find_largest(array, length)
   i = 0
   largest = 0
-  while i < length
+  until array[i] == nil
     if array[i] > largest
       largest = array[i]
     end
     i += 1
   end
+  return largest
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
 def find_smallest(array, length)
   i = 0
-  smallest = 0
-  while i < length
-    if array[i] < largest
+  smallest = array[i]
+  until array[i] == nil
+    if array[i] < smallest
       smallest = array[i]
     end
     i += 1
   end
+  return smallest
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
   left = 0
   right = length - 1
-  dummy = 0
+  holder = 0
   while left < length/2
-    dummy = array[left]
+    holder = array[left]
     array[left] = array[right]
-    array[right] = dummy
+    array[right] = holder
     left += 1
     right -= 1
   end
+  return array
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
 def binary_search(array, length, value_to_find)
-  #running into issue of splitting array and it changing array sizes from odd/even, which changes if you need to check out the middle number
-#   i = 0
-#   found = false
-#   array_section = length
-#   if array_section%2 == 0
-#     while i < (array_section/2)
-#       if value_to_find > array[array_section/2]
-# end
-#
+
+  return false if length == 0
+  low = 0
+  high = length-1
+  length.times do
+    mid = (high+low)/2
+      if array[mid] == value_to_find || array[low] == value_to_find || array[high] == value_to_find
+        return true
+      elsif array[mid] > value_to_find
+        high = mid-1
+      elsif array[mid] < value_to_find
+        low = mid+1
+      end
+  end
 
 end
 
@@ -121,14 +132,14 @@ def sort(array, length)
 end
 ## --- END OF METHODS ---
 
-# A restricted array could be constructed of a given size like so
-# puts "---Test 1: Check length --"
-# size = 5
-# my_integer_array = RestrictedArray.new(size)
-# my_integer_array_length = length(my_integer_array)
-# puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
-# puts "BUG!" if my_integer_array_length != size
-# puts
+#A restricted array could be constructed of a given size like so
+puts "---Test 1: Check length --"
+size = 5
+my_integer_array = RestrictedArray.new(size)
+my_integer_array_length = length(my_integer_array)
+puts "The length of my integer array is #{my_integer_array_length}, which should be the same as #{size}."
+puts "BUG!" if my_integer_array_length != size
+puts
 
 # A restricted array could be constructed of a random size (1 to 20) like so
 another_array = RestrictedArray.new()
@@ -141,6 +152,7 @@ puts "---Test 2: Print values --"
 print "Printing values in the array: "
 print_array(another_array)
 
+puts
 puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
 value_to_find = 120
