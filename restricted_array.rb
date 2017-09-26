@@ -2,6 +2,7 @@
 # Simulating integer array from other, C like languages (C, C++, C#, Java)
 # Native arrays in these languages have only certain methods available.
 class RestrictedArray
+  attr_reader :internal_array
   # creates a restricted array of default size i.e. 20 or of size passed
   def initialize(*args)
     if args.size == 0 # no size argument passed, assume 20
