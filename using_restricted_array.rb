@@ -48,7 +48,6 @@ def find_largest(array, length)
   while array[i] != nil
     if array[i] > largest
       largest = array[i]
-    else
     end
     i += 1
   end
@@ -64,7 +63,6 @@ def find_smallest(array, length)
   while array[i] != nil
     if array[i] < smallest
       smallest = array[i]
-    else
     end
     i += 1
   end
@@ -77,8 +75,10 @@ def reverse(array, length)
   j = length - 1 #last index
 
   while i < j
-    array[0] = array[length - 1]
-    array[length - 1] = array[0]
+    temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+
     i += 1
     j -= 1
   end
@@ -101,7 +101,12 @@ def binary_search(array, length, value_to_find)
       j = mid - 1
     end
   end
-  return false 
+  
+  if array[i] == value_to_find
+    return true
+  end
+
+  return false
 end
 
 # Helper method provided to sort the array in ascending order
