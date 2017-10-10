@@ -6,42 +6,120 @@ require_relative 'restricted_array.rb'
 
 # Calculates the length of the restricted array. All values are integers.
 # The restricted_array is terminated by 'nil' i.e. array[length] = nil
+#################
+###### O(n) #####
+#################
 def length(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  while array[index] != nil
+    index += 1
+  end
+  return index
+  # puts "NOT IMPLEMENTED"
 end
 
 # Prints each integer values in the array
+#################
+###### O(n) #####
+#################
 def print_array(array)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  while array[index] != nil
+    print "#{array[index]} "
+    index += 1
+  end
+  puts
+  # puts "NOT IMPLEMENTED"
 end
 
 # For an unsorted array, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
+#################
+###### O(n) #####
+#################
 def search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  while index < length
+    if array[index] == value_to_find
+      return true
+    end
+    index += 1
+  end
+  return false
+  # puts "NOT IMPLEMENTED"
 end
 
-# Finds and returns the largest integer value the array
+# Finds and returns the largest integer value in the array
 # Assumes that the array is not sorted.
+#################
+###### O(n) #####
+#################
 def find_largest(array, length)
-  puts "NOT IMPLEMENTED"
+  index = 0
+  largest = 0
+  while index < length
+    if array[index] > largest
+      largest = array[index]
+    end
+    index += 1
+  end
+  return largest
+  # puts "NOT IMPLEMENTED"
 end
 
 # Finds and returns the smallest integer value in the array
 # Assumes that the array is not sorted.
+###### TIME #####
+###### O(n) #####
+#################
 def find_smallest(array, length)
-  puts "NOT IMPLEMENTED"
+  index = 1
+  smallest = array[0]
+  while index < length
+    if array[index] < smallest
+      smallest = array[index]
+    end
+    index += 1
+  end
+  return smallest
+  # puts "NOT IMPLEMENTED"
 end
 
 # Reverses the values in the integer array in place
 def reverse(array, length)
-  puts "NOT IMPLEMENTED"
+  front_index = 0
+  back_index = length-1
+  while front_index < back_index
+    back = array[back_index]
+    array[back_index] = array[front_index]
+    array[front_index] = back
+    front_index += 1
+    back_index -= 1
+  end
+  # puts "NOT IMPLEMENTED"
 end
 
 # For an array sorted in ascending order, searches for 'value_to_find'.
 # Returns true if found, false otherwise.
+####### TIME #######
+##### O(log(n)) ####
+####################
 def binary_search(array, length, value_to_find)
-  puts "NOT IMPLEMENTED"
+  print_array(array)
+  min = 0
+  max = length
+  while min < max
+    middle = min + (max - min)/2
+    if array[middle] == value_to_find
+      return true
+    elsif value_to_find < array[middle]
+      max = middle-1
+    elsif value_to_find > array[middle]
+      min = middle+1
+    end
+  end
+  return false
+  # puts "NOT IMPLEMENTED"
 end
 
 # Helper method provided to sort the array in ascending order
@@ -89,6 +167,7 @@ puts "---Test 2: Print values --"
 # print the current array
 print "Printing values in the array: "
 print_array(another_array)
+puts
 
 puts "---Test 3: Linear Search --"
 # search for value_to_find in the array
